@@ -48,10 +48,14 @@ func (a *App) initialize() {
 
 func (a *App) routes() {
 	todoAPI := InitToDo(a.DB)
+	algoritmsAPI := InitAlgoritms()
 	a.Router.HandleFunc("/api/todos", todoAPI.FindAllTodos()).Methods("GET")
 	a.Router.HandleFunc("/api/todos", todoAPI.CreateToDo()).Methods("POST")
 	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", todoAPI.FindByID()).Methods("GET")
 	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", todoAPI.DeleteToDo()).Methods("DELETE")
+
+	a.Router.HandleFunc("/api/first", algoritmsAPI.FirstAlgoritm()).Methods("GET")
+	a.Router.HandleFunc("/api/second", algoritmsAPI.SecondAlgoritm()).Methods("POST")
 }
 
 func InitToDo(db *gorm.DB) api.ToDoAPI {
@@ -60,4 +64,9 @@ func InitToDo(db *gorm.DB) api.ToDoAPI {
 	todoAPI := api.NewToDoAPI(todoService)
 	todoAPI.Migrate()
 	return todoAPI
+}
+
+func InitAlgoritms() api.AlgorithmAPI {
+	algoritmsAPI := api.NewAlgorithmAPI()
+	return algoritmsAPI
 }
