@@ -18,7 +18,6 @@ type App struct {
 }
 
 func main() {
-
 	a := App{}
 
 	a.initialize()
@@ -48,11 +47,11 @@ func (a *App) initialize() {
 }
 
 func (a *App) routes() {
-	postAPI := InitToDo(a.DB)
-	a.Router.HandleFunc("/api/todos", postAPI.FindAllPosts()).Methods("GET")
-	a.Router.HandleFunc("/api/todos", postAPI.CreateToDo()).Methods("POST")
-	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", postAPI.FindByID()).Methods("GET")
-	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", postAPI.DeleteToDo()).Methods("DELETE")
+	todoAPI := InitToDo(a.DB)
+	a.Router.HandleFunc("/api/todos", todoAPI.FindAllTodos()).Methods("GET")
+	a.Router.HandleFunc("/api/todos", todoAPI.CreateToDo()).Methods("POST")
+	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", todoAPI.FindByID()).Methods("GET")
+	a.Router.HandleFunc("/api/todos/{id:[0-9]+}", todoAPI.DeleteToDo()).Methods("DELETE")
 }
 
 func InitToDo(db *gorm.DB) api.ToDoAPI {

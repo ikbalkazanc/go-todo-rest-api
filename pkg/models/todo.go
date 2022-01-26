@@ -10,14 +10,14 @@ type ToDo struct {
 	IsCompleted bool      `json:"isCompleted"`
 }
 
-// PostDTO is our data transfer object for Post
+// TodoDTO is our data transfer object for Post
 type ToDoDTO struct {
 	ID          uint   `gorm:"primary_key" json:"id"`
 	Title       string `json:"title"`
 	IsCompleted bool   `json:"isCompleted"`
 }
 
-// ToPost converts postDTO to post
+// To ToDo converts todoDTO to post
 func ToToDoModel(todoDTO *ToDoDTO) *ToDo {
 	return &ToDo{
 		Title:       todoDTO.Title,
@@ -25,7 +25,7 @@ func ToToDoModel(todoDTO *ToDoDTO) *ToDo {
 	}
 }
 
-// ToPostDTO converts post to postDTO
+// ToTodoDTO converts post to todoDTO
 func ToToDoDTO(todo *ToDo) *ToDoDTO {
 	return &ToDoDTO{
 		ID:          todo.ID,

@@ -5,6 +5,7 @@ import (
 	"net/http"
 )
 
+//Base Response
 type ErrorResponseDTO struct {
 	Code    int      `json:"code"`
 	Status  string   `json:"status"`

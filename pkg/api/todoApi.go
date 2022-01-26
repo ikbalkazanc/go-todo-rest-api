@@ -20,7 +20,7 @@ func NewToDoAPI(p service.ToDoService) ToDoAPI {
 }
 
 // FindAll
-func (p ToDoAPI) FindAllPosts() http.HandlerFunc {
+func (p ToDoAPI) FindAllTodos() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		todos, err := p.ToDoService.All()
